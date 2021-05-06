@@ -1,0 +1,182 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %} {{article.article_title}} {% endblock %}
+
+{% block content %}
+
+<header class="sticky-top">
+
+	<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+		<a class="navbar-brand" href="{% url 'articles:index' %}">/ < вернутся к списку статей /</a>
+		<button class="navbar-toggler text-left" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+			<span class="navbar-toggler-icon"></span>
+		</button>
+
+		<div class="collapse navbar-collapse" id="navbarSupportedContent">
+			<ul class="navbar-nav mr-auto">
+				<li class="nav-item">
+					<a class="nav-link" href="#">Статья</a>
+				</li>
+				<li class="nav-item">
+					<a class="nav-link" href="#comments">Коментарии</a>
+				</li>
+				<li class="nav-item dropdown">
+					<a class="nav-link" href="#leave_comment">Оставить коментарий</a>
+				</li>
+			</ul>
+			
+		</div>
+		<h1>/Polls/ <small>Just post articles</small></h1>
+	</nav>
+
+</header>
+
+<!-- <a class="btn btn-dark" href="{% url 'articles:index' %}"> <<< Вернутся к списку статей</a> -->
+<div class="article-top">
+
+	<h1 class="text-center p-2">{{article.article_title}}</h1>
+
+</div>
+
+<hr>
+<div class="article p-2">
+
+<i>Автор: {{article.article_author}}</i>
+
+<hr>
+
+<div class="content">
+
+	<pre id="a_content">{{article.article_text|safe}} </pre>
+
+</div>
+
+
+<div class="date">
+
+	<em>{{article.ppub_date}}</em>
+
+	{% if article.was_recent %}
+
+		<sub><b>СВЕЖАК</b></sub>
+
+	{% else %}
+
+		<sub><b>НЕ СВЕЖАК</b></sub>
+
+	{% endif %}
+
+</div>	
+
+</div>
+
+<div id="forms" class="like-dislike m-2">
+	<form action="{% url 'articles:leave_like' article.id %}" method="POST">
+
+		{% csrf_token %}
+
+		<label for="like">Нравится: {{article.liked.all.count}}</label>
+
+		{% if user.is_authenticated %}
+
+		{% if user not in article.liked.all %}
+
+		<button class="btn btn-success btn-sm" type="submit" name="like" value="1">Лайк</button>
+
+		{% else %}
+
+		<button class="btn btn-danger btn-sm" type="submit" name="unlike" value="1">Забрать Лайк</button>
+
+		{% endif %}
+
+		{% else %}
+
+		{% endif %}
+
+	</form>
+<!-- <strong>|</strong>
+	<form action="{% url 'articles:leave_dislike' article.id %}" method="GET">
+
+		{% csrf_token %}
+
+		<label for="like">Кринжануло: {{article.dislikes}}</label>
+		<button type="submit" name="dislike" value="1">Кринж</button>
+
+	</form> -->
+</div>
+
+
+<div id="comments" class="p-2 mt-3">
+
+	<h3>Коментарии:</h3>
+	<hr>
+
+	{% if latest_comments_list %}
+	
+	{% for c in latest_comments_list %}
+
+		<p class="ml-4 "> <strong>{{c.author_name}}:</strong> {{c.comment_text}}</p>
+
+	{% endfor %}
+
+	{% else %}
+	<i>А коментарив то нет. Пишите первым.</i> 
+	{% endif %}
+
+</div>
+
+<hr>
+
+<div id="leave_comment">
+
+	{% if user.is_authenticated %}
+	
+	<h4>Оставить коментарий</h4>
+<div class="send-comment form-group">
+	<form action="{% url 'articles:leave_comment' article.id %}" method="POST">
+
+		{% csrf_token %}
+
+		<textarea class="form-control" name="text" required="" placeholder="Ваш комнтарий" cols="20" rows="5" maxlength="200"></textarea>
+		<br>
+		<button class="form-control btn btn-primary" type="submit">Запостить</button>
+
+	</form>
+</div>
+	{% else %}
+
+	<p>Вам нужно ввойти в аккаунт чтобы оставить коментарий или поставить Лайк</p>
+
+	<form action="{% url 'articles:logingin' %}" method="POST">
+
+		{% csrf_token %}
+
+		<input type="text" name="username">
+		<input type="password" name="psswrd">
+		<input type="submit" value="Login">
+
+	</form>
+
+	{% endif %}
+
+	
+</div>
+
+<!-- <style>
+
+	form {
+		display: inline-block;
+	}
+	
+	#forms{
+		display: inline-block;
+	}	
+
+	#a_content{
+		font: normal normal 400 16px serif;
+	}
+
+</style> -->
+
+{% endblock %}

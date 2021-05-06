@@ -1,0 +1,520 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<database>
+    <name>db</name>
+    <table>
+        <database></database>
+        <name>polls_article</name>
+        <ddl><![CDATA[CREATE TABLE "polls_article" ("id" integer NOT NULL PRIMARY KEY AUTOINCREMENT, "article_title" varchar(200) NOT NULL, "article_text" text NOT NULL, "ppub_date" datetime NOT NULL, "article_author_id" integer NOT NULL REFERENCES "auth_user" ("id") DEFERRABLE INITIALLY DEFERRED)]]></ddl>
+        <columns>
+            <column>
+                <name>id</name>
+                <type>integer</type>
+                <constraints>
+                    <constraint>
+                        <type>NOT NULL</type>
+                        <definition>NOT NULL </definition>
+                    </constraint>
+                    <constraint>
+                        <type>PRIMARY KEY</type>
+                        <definition>PRIMARY KEY AUTOINCREMENT</definition>
+                    </constraint>
+                </constraints>
+            </column>
+            <column>
+                <name>article_title</name>
+                <type>varchar</type>
+                <constraints>
+                    <constraint>
+                        <type>NOT NULL</type>
+                        <definition>NOT NULL</definition>
+                    </constraint>
+                </constraints>
+            </column>
+            <column>
+                <name>article_text</name>
+                <type>text</type>
+                <constraints>
+                    <constraint>
+                        <type>NOT NULL</type>
+                        <definition>NOT NULL</definition>
+                    </constraint>
+                </constraints>
+            </column>
+            <column>
+                <name>ppub_date</name>
+                <type>datetime</type>
+                <constraints>
+                    <constraint>
+                        <type>NOT NULL</type>
+                        <definition>NOT NULL</definition>
+                    </constraint>
+                </constraints>
+            </column>
+            <column>
+                <name>article_author_id</name>
+                <type>integer</type>
+                <constraints>
+                    <constraint>
+                        <type>NOT NULL</type>
+                        <definition>NOT NULL </definition>
+                    </constraint>
+                    <constraint>
+                        <type>FOREIGN KEY</type>
+                        <definition>REFERENCES "auth_user" ("id") </definition>
+                    </constraint>
+                </constraints>
+            </column>
+        </columns>
+        <rows>
+            <row>
+                <value column="0">1</value>
+                <value column="1">Как начать изучать Django?</value>
+                <value column="2"><![CDATA[Всем здарова.
+                -- Всё довольно просто. Открываете ютуб и пишете в поисковой строке 'Django'.
+                -- Первое же видео скорее всего будет от канала "Хауди Хо - Просто о мире IT".
+                -- Открываем это видео и внимательно слушаем, повторяя за автором. 
+                -- <strong>Смотрим до конца!</strong>
+                -- Дальше вам стоит подумать что бы вы поменяли или добавили, записать ваши идеи и попробовать воплотить их.
+                -- В описании к виде можно найти полезные ссылки.]]></value>
+                <value column="3">2021-03-13 14:53:42</value>
+                <value column="4">1</value>
+            </row>
+            <row>
+                <value column="0">2</value>
+                <value column="1">А как на счёт питона?</value>
+                <value column="2">Питон = прикольно, это как минимум boi, шариш?
+                Мне нравится потому-что необычно и не так много возни и есть много готового.
+                Пишите в комментариях ваше мнение.</value>
+                <value column="3">2021-03-19 00:48:00</value>
+                <value column="4">1</value>
+            </row>
+            <row>
+                <value column="0">3</value>
+                <value column="1">Это что 2ch для питонистов?</value>
+                <value column="2">Прикольно, интересно что админ будет с этим делать.
+                Первое впечатление - пустовато и мало функционала но зато все просто
+                Короче удачи админу с сайтом</value>
+                <value column="3">2021-03-19 00:51:00</value>
+                <value column="4">1</value>
+            </row>
+            <row>
+                <value column="0">4</value>
+                <value column="1">Отдых в Одессе</value>
+                <value column="2">Было круто</value>
+                <value column="3">2021-03-22 10:12:00</value>
+                <value column="4">1</value>
+            </row>
+            <row>
+                <value column="0">5</value>
+                <value column="1">Лайки</value>
+                <value column="2">Здарова я поменял систему лайков</value>
+                <value column="3">2021-04-03 03:31:00</value>
+                <value column="4">1</value>
+            </row>
+            <row>
+                <value column="0">6</value>
+                <value column="1">huho</value>
+                <value column="2">arjarje</value>
+                <value column="3">2021-04-06 17:38:17</value>
+                <value column="4">1</value>
+            </row>
+            <row>
+                <value column="0">16</value>
+                <value column="1">fgjfgjj</value>
+                <value column="2">tjrt544</value>
+                <value column="3">2021-04-06 18:04:49</value>
+                <value column="4">1</value>
+            </row>
+            <row>
+                <value column="0">17</value>
+                <value column="1">wetwet</value>
+                <value column="2">проверка</value>
+                <value column="3">2021-04-16 14:23:42</value>
+                <value column="4">0</value>
+            </row>
+            <row>
+                <value column="0">18</value>
+                <value column="1">никто не знает кто это написал</value>
+                <value column="2">ахахахахах</value>
+                <value column="3">2021-04-16 14:24:42</value>
+                <value column="4">0</value>
+            </row>
+            <row>
+                <value column="0">19</value>
+                <value column="1">это новая статья</value>
+                <value column="2">Чтож теперь есть и эта страница</value>
+                <value column="3">2021-04-17 14:24:17</value>
+                <value column="4">0</value>
+            </row>
+        </rows>
+    </table>
+    <table>
+        <database></database>
+        <name>polls_article_liked</name>
+        <ddl><![CDATA[CREATE TABLE "polls_article_liked" ("id" integer NOT NULL PRIMARY KEY AUTOINCREMENT, "article_id" integer NOT NULL REFERENCES "polls_article" ("id") DEFERRABLE INITIALLY DEFERRED, "user_id" integer NOT NULL REFERENCES "auth_user" ("id") DEFERRABLE INITIALLY DEFERRED)]]></ddl>
+        <columns>
+            <column>
+                <name>id</name>
+                <type>integer</type>
+                <constraints>
+                    <constraint>
+                        <type>NOT NULL</type>
+                        <definition>NOT NULL </definition>
+                    </constraint>
+                    <constraint>
+                        <type>PRIMARY KEY</type>
+                        <definition>PRIMARY KEY AUTOINCREMENT</definition>
+                    </constraint>
+                </constraints>
+            </column>
+            <column>
+                <name>article_id</name>
+                <type>integer</type>
+                <constraints>
+                    <constraint>
+                        <type>NOT NULL</type>
+                        <definition>NOT NULL </definition>
+                    </constraint>
+                    <constraint>
+                        <type>FOREIGN KEY</type>
+                        <definition>REFERENCES "polls_article" ("id") </definition>
+                    </constraint>
+                </constraints>
+            </column>
+            <column>
+                <name>user_id</name>
+                <type>integer</type>
+                <constraints>
+                    <constraint>
+                        <type>NOT NULL</type>
+                        <definition>NOT NULL </definition>
+                    </constraint>
+                    <constraint>
+                        <type>FOREIGN KEY</type>
+                        <definition>REFERENCES "auth_user" ("id") </definition>
+                    </constraint>
+                </constraints>
+            </column>
+        </columns>
+        <rows>
+            <row>
+                <value column="0">4</value>
+                <value column="1">2</value>
+                <value column="2">1</value>
+            </row>
+            <row>
+                <value column="0">5</value>
+                <value column="1">5</value>
+                <value column="2">2</value>
+            </row>
+            <row>
+                <value column="0">6</value>
+                <value column="1">2</value>
+                <value column="2">2</value>
+            </row>
+            <row>
+                <value column="0">7</value>
+                <value column="1">1</value>
+                <value column="2">1</value>
+            </row>
+            <row>
+                <value column="0">8</value>
+                <value column="1">1</value>
+                <value column="2">4</value>
+            </row>
+            <row>
+                <value column="0">11</value>
+                <value column="1">1</value>
+                <value column="2">2</value>
+            </row>
+        </rows>
+    </table>
+    <table>
+        <database></database>
+        <name>polls_comment</name>
+        <ddl><![CDATA[CREATE TABLE "polls_comment" ("id" integer NOT NULL PRIMARY KEY AUTOINCREMENT, "author_name" varchar(50) NOT NULL, "comment_text" varchar(200) NOT NULL, "article_id" integer NOT NULL REFERENCES "polls_article" ("id") DEFERRABLE INITIALLY DEFERRED)]]></ddl>
+        <columns>
+            <column>
+                <name>id</name>
+                <type>integer</type>
+                <constraints>
+                    <constraint>
+                        <type>NOT NULL</type>
+                        <definition>NOT NULL </definition>
+                    </constraint>
+                    <constraint>
+                        <type>PRIMARY KEY</type>
+                        <definition>PRIMARY KEY AUTOINCREMENT</definition>
+                    </constraint>
+                </constraints>
+            </column>
+            <column>
+                <name>author_name</name>
+                <type>varchar</type>
+                <constraints>
+                    <constraint>
+                        <type>NOT NULL</type>
+                        <definition>NOT NULL</definition>
+                    </constraint>
+                </constraints>
+            </column>
+            <column>
+                <name>comment_text</name>
+                <type>varchar</type>
+                <constraints>
+                    <constraint>
+                        <type>NOT NULL</type>
+                        <definition>NOT NULL</definition>
+                    </constraint>
+                </constraints>
+            </column>
+            <column>
+                <name>article_id</name>
+                <type>integer</type>
+                <constraints>
+                    <constraint>
+                        <type>NOT NULL</type>
+                        <definition>NOT NULL </definition>
+                    </constraint>
+                    <constraint>
+                        <type>FOREIGN KEY</type>
+                        <definition>REFERENCES "polls_article" ("id") </definition>
+                    </constraint>
+                </constraints>
+            </column>
+        </columns>
+        <rows>
+            <row>
+                <value column="0">11</value>
+                <value column="1">admin</value>
+                <value column="2">sasBOI
+                </value>
+                <value column="3">1</value>
+            </row>
+            <row>
+                <value column="0">12</value>
+                <value column="1">admin</value>
+                <value column="2">2021-03-17 14:27:10.977539+00:00</value>
+                <value column="3">1</value>
+            </row>
+            <row>
+                <value column="0">13</value>
+                <value column="1">admin</value>
+                <value column="2">hello it 2021-03-17 14:37:26.315429+00:00 right now</value>
+                <value column="3">1</value>
+            </row>
+            <row>
+                <value column="0">14</value>
+                <value column="1">admin</value>
+                <value column="2">really? its 2021-03-17 14:38:25.744140+00:00 out here</value>
+                <value column="3">1</value>
+            </row>
+            <row>
+                <value column="0">15</value>
+                <value column="1">admin</value>
+                <value column="2">2021-03-17 14:48:24</value>
+                <value column="3">1</value>
+            </row>
+            <row>
+                <value column="0">16</value>
+                <value column="1">admin</value>
+                <value column="2">Здарова я админ
+                Покачто ничего не планирую
+                Изучаю Django на примере этого сайта
+                </value>
+                <value column="3">3</value>
+            </row>
+            <row>
+                <value column="0">17</value>
+                <value column="1">admin</value>
+                <value column="2">Согласен
+                </value>
+                <value column="3">2</value>
+            </row>
+            <row>
+                <value column="0">18</value>
+                <value column="1">sasBOI</value>
+                <value column="2">А я сюда с телефона зашёл </value>
+                <value column="3">2</value>
+            </row>
+            <row>
+                <value column="0">19</value>
+                <value column="1">sasBOI</value>
+                <value column="2">круто
+                </value>
+                <value column="3">3</value>
+            </row>
+            <row>
+                <value column="0">20</value>
+                <value column="1">admin</value>
+                <value column="2">ыывпы</value>
+                <value column="3">4</value>
+            </row>
+            <row>
+                <value column="0">21</value>
+                <value column="1">admin</value>
+                <value column="2">хахха 2021-04-03 01:20:39
+                </value>
+                <value column="3">5</value>
+            </row>
+            <row>
+                <value column="0">22</value>
+                <value column="1">Zara35</value>
+                <value column="2">вау прикольно
+                2021-04-05 22:40:46</value>
+                <value column="3">1</value>
+            </row>
+            <row>
+                <value column="0">23</value>
+                <value column="1">sasBOI</value>
+                <value column="2">прикол</value>
+                <value column="3">1</value>
+            </row>
+        </rows>
+    </table>
+    <table>
+        <database></database>
+        <name>polls_like</name>
+        <ddl><![CDATA[CREATE TABLE "polls_like" ("id" integer NOT NULL PRIMARY KEY AUTOINCREMENT, "val" varchar(10) NOT NULL, "article_id" integer NOT NULL REFERENCES "polls_article" ("id") DEFERRABLE INITIALLY DEFERRED, "user_id" integer NOT NULL REFERENCES "auth_user" ("id") DEFERRABLE INITIALLY DEFERRED)]]></ddl>
+        <columns>
+            <column>
+                <name>id</name>
+                <type>integer</type>
+                <constraints>
+                    <constraint>
+                        <type>NOT NULL</type>
+                        <definition>NOT NULL </definition>
+                    </constraint>
+                    <constraint>
+                        <type>PRIMARY KEY</type>
+                        <definition>PRIMARY KEY AUTOINCREMENT</definition>
+                    </constraint>
+                </constraints>
+            </column>
+            <column>
+                <name>val</name>
+                <type>varchar</type>
+                <constraints>
+                    <constraint>
+                        <type>NOT NULL</type>
+                        <definition>NOT NULL</definition>
+                    </constraint>
+                </constraints>
+            </column>
+            <column>
+                <name>article_id</name>
+                <type>integer</type>
+                <constraints>
+                    <constraint>
+                        <type>NOT NULL</type>
+                        <definition>NOT NULL </definition>
+                    </constraint>
+                    <constraint>
+                        <type>FOREIGN KEY</type>
+                        <definition>REFERENCES "polls_article" ("id") </definition>
+                    </constraint>
+                </constraints>
+            </column>
+            <column>
+                <name>user_id</name>
+                <type>integer</type>
+                <constraints>
+                    <constraint>
+                        <type>NOT NULL</type>
+                        <definition>NOT NULL </definition>
+                    </constraint>
+                    <constraint>
+                        <type>FOREIGN KEY</type>
+                        <definition>REFERENCES "auth_user" ("id") </definition>
+                    </constraint>
+                </constraints>
+            </column>
+        </columns>
+        <rows>
+            <row>
+                <value column="0">1</value>
+                <value column="1">Unlike</value>
+                <value column="2">5</value>
+                <value column="3">1</value>
+            </row>
+            <row>
+                <value column="0">2</value>
+                <value column="1">like</value>
+                <value column="2">2</value>
+                <value column="3">1</value>
+            </row>
+            <row>
+                <value column="0">3</value>
+                <value column="1">like</value>
+                <value column="2">5</value>
+                <value column="3">2</value>
+            </row>
+            <row>
+                <value column="0">4</value>
+                <value column="1">like</value>
+                <value column="2">2</value>
+                <value column="3">2</value>
+            </row>
+            <row>
+                <value column="0">5</value>
+                <value column="1">like</value>
+                <value column="2">1</value>
+                <value column="3">1</value>
+            </row>
+            <row>
+                <value column="0">6</value>
+                <value column="1">like</value>
+                <value column="2">1</value>
+                <value column="3">4</value>
+            </row>
+            <row>
+                <value column="0">7</value>
+                <value column="1">Like</value>
+                <value column="2">18</value>
+                <value column="3">2</value>
+            </row>
+            <row>
+                <value column="0">8</value>
+                <value column="1">Unlike</value>
+                <value column="2">1</value>
+                <value column="3">2</value>
+            </row>
+        </rows>
+    </table>
+    <index>
+        <database></database>
+        <name>polls_article_article_author_id_101906dc</name>
+        <ddl>CREATE INDEX &quot;polls_article_article_author_id_101906dc&quot; ON &quot;polls_article&quot; (&quot;article_author_id&quot;)</ddl>
+    </index>
+    <index>
+        <database></database>
+        <name>polls_article_liked_article_id_cd592ed5</name>
+        <ddl>CREATE INDEX &quot;polls_article_liked_article_id_cd592ed5&quot; ON &quot;polls_article_liked&quot; (&quot;article_id&quot;)</ddl>
+    </index>
+    <index>
+        <database></database>
+        <name>polls_article_liked_article_id_user_id_d0b6200b_uniq</name>
+        <unique>true</unique>
+        <ddl><![CDATA[CREATE UNIQUE INDEX "polls_article_liked_article_id_user_id_d0b6200b_uniq" ON "polls_article_liked" ("article_id", "user_id")]]></ddl>
+    </index>
+    <index>
+        <database></database>
+        <name>polls_article_liked_user_id_cdc7bb53</name>
+        <ddl>CREATE INDEX &quot;polls_article_liked_user_id_cdc7bb53&quot; ON &quot;polls_article_liked&quot; (&quot;user_id&quot;)</ddl>
+    </index>
+    <index>
+        <database></database>
+        <name>polls_comment_article_id_b6817d9e</name>
+        <ddl>CREATE INDEX &quot;polls_comment_article_id_b6817d9e&quot; ON &quot;polls_comment&quot; (&quot;article_id&quot;)</ddl>
+    </index>
+    <index>
+        <database></database>
+        <name>polls_like_article_id_250384d1</name>
+        <ddl>CREATE INDEX &quot;polls_like_article_id_250384d1&quot; ON &quot;polls_like&quot; (&quot;article_id&quot;)</ddl>
+    </index>
+    <index>
+        <database></database>
+        <name>polls_like_user_id_db42155e</name>
+        <ddl>CREATE INDEX &quot;polls_like_user_id_db42155e&quot; ON &quot;polls_like&quot; (&quot;user_id&quot;)</ddl>
+    </index>
+</database>

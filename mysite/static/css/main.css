@@ -1,0 +1,73 @@
+hr {
+	margin: 5px;
+}
+
+.register-login-logout {
+	background-color: #f1f1f1;
+}
+
+header {
+	background-color: white;
+	border: 1px solid #343a40;
+}
+
+body > header > nav > h1 {
+	text-align: center;
+	color: white;
+}
+
+div {
+
+	scroll-margin-top: 70px;
+}
+
+#a_content {
+
+	/*font: normal normal 400 20px sans-serif;*/
+
+	font-family: Lora,Georgia,Times,serif;
+    font-size: 18px;
+    line-height: 30px;
+    color: #262626;
+
+}
+
+body > div.article-top	{
+
+	background-color: #f1f1f1;
+
+}
+
+.content-top	{
+
+	background-color: #f1f1f1;
+
+}
+
+.navbar-dark .navbar-brand:hover {
+    color: #ccc;
+}
+
+#register_form	{
+
+	background-color: #f1f1f1;
+	position: absolute;
+	border: 4px solid #dadcde;
+	border-radius: 6px;
+	width: 480px;
+    max-width: 100%;
+    height: 470px;
+    max-height: 100%;
+	top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+
+}
+
+.btn-dark {
+    background-color: #343a40;
+}
+
+footer	{
+	background: #f1f1f1;
+}

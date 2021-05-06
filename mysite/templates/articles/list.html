@@ -1,0 +1,153 @@
+{% extends 'base.html' %}
+
+{% block title %} Последние статьи {% endblock %}
+{% load static %}
+
+{% block content %}
+
+<header class="sticky-top">
+
+	<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+		<a class="navbar-brand" href="#">///</a>
+		<button class="navbar-toggler text-left" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+			<span class="navbar-toggler-icon"></span>
+		</button>
+
+		<div class="collapse navbar-collapse" id="navbarSupportedContent">
+			<ul class="navbar-nav mr-auto">
+				<li class="nav-item active">
+					<a class="nav-link" href="#">Главная</a>
+				</li>
+				<li class="nav-item">
+					<a class="nav-link" href="#write">Написать</a>
+				</li>
+				<li class="nav-item dropdown">
+					<a class="nav-link" href="#find">Поиск</a>
+				</li>
+				<li class="nav-item">
+					<a class="nav-link" href="#article_list">Статьи</a>
+				</li>
+			</ul>
+			
+		</div>
+		<h1>/Polls/ <small>Just post articles</small></h1>
+	</nav>
+	
+</header>
+
+<div class="register-login-logout row p-3">
+	<div class="blank col-2"></div>
+	<h4 class="col-sm p-1 text-center my-auto">Здарова, {{ user.username|default:'Гость' }}! </h4>
+
+	{% if user.is_authenticated %}
+
+	<a class="btn btn-outline-danger col-2" href="{% url 'articles:logingout' %}">Выйти</a>
+	
+	{% else %}
+
+	<button class="btn btn-outline-danger col-2 float-right" data-toggle="collapse" data-target="#login-register">Регистрация | Войти </button>
+
+	<div id="login-register" class="collapse col-2 float-right">
+		<div class="login text-center">
+			<div class="form-group m-0">
+				<form action="{% url 'articles:logingin' %}" method="POST" name="loginform">
+
+					{% csrf_token %}
+
+					<input class="form-control" type="text" name="username" placeholder="Логин">
+					<input class="form-control" type="password" name="psswrd" placeholder="Пароль">
+					<input class="form-control btn btn-primary" type="submit" value="Войти">
+
+				</form>
+			</div>	
+
+			<p class="m-1">или</p>
+
+			<a class="btn btn-outline-success" href="{% url 'articles:register' %}">Зарегистрироватся</a>
+		</div>
+	</div>
+
+	{% if messages %}
+	<div class="error-messages col-4 text-center my-auto">
+		<div class="alert alert-success p-0 m-0">
+			{% for message in messages %}
+
+			<strong {% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</strong>
+
+			{% endfor %}
+		</div>
+	</div>
+	{% endif %}
+
+	{% endif %}
+
+</div>
+
+<hr>
+
+<div class="main container">
+
+	<div id="write" class="write text-center p-2">
+
+		<h2>Хочешь написать свою статью?</h2>
+
+		{% if user.is_authenticated %}
+
+		<a class="btn btn-primary" href="{% url 'articles:create_article' %}">Добавить статью</a>
+
+		{% else %}
+
+		<p>А вот если хочешь, то сначало ввойди в аккаунт или зарегистрируйся</p>
+
+		{% endif %}
+	</div>
+	<hr>
+
+	<div id="find" class="find p-2">
+		<h4>Найти статьи по ключевым словам</h4>
+		<div class="form-group m-0">
+
+			<form action="{% url 'articles:keys' %}" method="POST">
+
+				{% csrf_token %}	
+
+				<div class="input-group mb-3">
+					<input type="text" class="form-control" name="key_words" placeholder="интересно круто познавательно">
+					<div class="input-group-append">
+						<input class="btn btn-success" type="submit" name="search" value="Найти">
+					</div>
+				</div>
+
+			</form>
+		</div>
+	</div>
+
+	<div id="article_list" class="articles">
+
+		<h2 class="mb-3">Статьи</h2>
+
+		{% if latest_articles %}
+		<div class="article-table">
+			{% for a in latest_articles %}
+			<a class="btn btn-dark btn-block btn-lg text-left" href="{% url 'articles:detail' a.id %}">/{{a.id}}/  {{a.article_title}}</a>
+			<br>
+			{% endfor %}
+		</div>
+		{% else %}
+		<p>Статьей нету...</p>
+		<style>
+			#article_list	{
+				background-image: url({% static 'png/logo.png' %});
+				height: 360px; /* You must set a specified height */
+				background-position: center;
+				background-repeat: no-repeat; /* Do not repeat the image */
+				background-size: cover; /* Resize the background image to cover the entire container */
+			}
+		</style>
+		{% endif %}
+	</div>
+
+</div>
+
+
+{% endblock %}
